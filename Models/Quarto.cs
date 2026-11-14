@@ -7,6 +7,9 @@ public class Quarto
     private decimal valorDiariaCrianca;
 
     public string Descricao { get; set; } = string.Empty;
+    public string Detalhes { get; set; } = string.Empty;
+    public string Imagem { get; set; } = string.Empty;
+    public string ValoresFormatados => $"Adulto: {ValorDiariaAdulto:C}  •  Criança: {ValorDiariaCrianca:C} / diária";
 
     public decimal ValorDiariaAdulto
     {

@@ -8,6 +8,7 @@
             <Border StrokeThickness="0" BackgroundColor="#0B1D34" Padding="24,30,24,28">
                 <Border.StrokeShape><RoundRectangle CornerRadius="0,0,28,28" /></Border.StrokeShape>
                 <VerticalStackLayout Spacing="10">
+                    <Image Source="hotel_fachada.svg" HeightRequest="145" Aspect="AspectFill"/>
                     <Label Text="H O T E L  B R A G A" FontSize="12" TextColor="#C6A15B" FontAttributes="Bold" />
                     <Label Text="Sua próxima estadia começa aqui." FontSize="29" FontAttributes="Bold" TextColor="White" />
                     <Label Text="Conforto, praticidade e uma reserva do seu jeito." FontSize="14" TextColor="#D1DBE7" />
@@ -24,6 +25,7 @@
                     <VerticalStackLayout Spacing="12">
                         <Label Text="01  ACOMODAÇÃO" FontSize="12" FontAttributes="Bold" TextColor="#B28B47" />
                         <Label Text="Escolha sua suíte" FontSize="17" FontAttributes="Bold" />
+                        <Button Text="Conheça nossas suítes e veja as imagens" Clicked="AbrirAcomodacoes" BackgroundColor="#D7B16E" TextColor="#102742" CornerRadius="12" HeightRequest="48" FontAttributes="Bold"/>
                         <Picker x:Name="Quartos" Title="Selecione a acomodação" ItemDisplayBinding="{Binding Descricao}" SelectedIndexChanged="AtualizarPrevia" />
                         <Label x:Name="PrecoTexto" Text="Selecione uma suíte para consultar os valores." FontSize="13" TextColor="#617187" />
                     </VerticalStackLayout>

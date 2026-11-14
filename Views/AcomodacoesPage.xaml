@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+ xmlns:models="clr-namespace:HotelBraga.Models"
+ x:Class="HotelBraga.Views.AcomodacoesPage"
+ Title="Conheça nossas suítes" BackgroundColor="#F2F5F8">
+ <CollectionView x:Name="ListaQuartos" SelectionMode="None">
+  <CollectionView.Header>
+   <VerticalStackLayout Spacing="9" Padding="20,22,20,20" BackgroundColor="#112943">
+    <Label Text="HOTEL BRAGA" FontSize="12" FontAttributes="Bold" TextColor="#D9B676" CharacterSpacing="4"/>
+    <Label Text="Encontre sua suíte ideal" FontSize="28" FontAttributes="Bold" TextColor="White"/>
+    <Label Text="Explore nossas acomodações e escolha sua próxima estadia." FontSize="14" TextColor="#E0E9F1"/>
+   </VerticalStackLayout>
+  </CollectionView.Header>
+  <CollectionView.ItemTemplate>
+   <DataTemplate x:DataType="models:Quarto">
+    <Border Margin="16,16,16,2" BackgroundColor="White" Stroke="#E0E7EF" StrokeThickness="1" StrokeShape="RoundRectangle 22">
+     <VerticalStackLayout Spacing="0">
+      <Image Source="{Binding Imagem}" Aspect="AspectFill" HeightRequest="210"/>
+      <VerticalStackLayout Padding="18" Spacing="10">
+       <Label Text="{Binding Descricao}" FontSize="22" FontAttributes="Bold" TextColor="#112943"/>
+       <Label Text="{Binding Detalhes}" FontSize="14" TextColor="#52677C"/>
+       <Label Text="{Binding ValoresFormatados}" FontSize="13" TextColor="#986B2E"/>
+       <Button Text="Escolher esta suíte" CommandParameter="{Binding .}" Clicked="SelecionarSuite" BackgroundColor="#163B57" TextColor="White" CornerRadius="12" HeightRequest="48"/>
+      </VerticalStackLayout>
+     </VerticalStackLayout>
+    </Border>
+   </DataTemplate>
+  </CollectionView.ItemTemplate>
+  <CollectionView.Footer><BoxView HeightRequest="24" Color="Transparent"/></CollectionView.Footer>
+ </CollectionView>
+</ContentPage>

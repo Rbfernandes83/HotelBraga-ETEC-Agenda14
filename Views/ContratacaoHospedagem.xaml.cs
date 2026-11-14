@@ -109,6 +109,16 @@ public partial class ContratacaoHospedagem : ContentPage
         await Navigation.PushAsync(new HospedagemContratada(CriarReserva(quarto, entrada.Value, saida.Value)));
     }
 
+    private async void AbrirAcomodacoes(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AcomodacoesPage(quarto =>
+        {
+            var opcoes = Quartos.ItemsSource as IEnumerable<Quarto>;
+            Quartos.SelectedItem = opcoes?.FirstOrDefault(q => q.Descricao == quarto.Descricao);
+            AtualizarPrevia();
+        }));
+    }
+
     private async void AbrirSobre(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new SobrePage());
