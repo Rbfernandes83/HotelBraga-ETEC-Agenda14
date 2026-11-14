@@ -9,14 +9,14 @@
   <Nullable>enable</Nullable>
   <ApplicationTitle>Hotel Braga</ApplicationTitle>
   <ApplicationId>com.rbfernandes83.hotelbraga.agenda14</ApplicationId>
-  <ApplicationDisplayVersion>1.1</ApplicationDisplayVersion>
-  <ApplicationVersion>2</ApplicationVersion>
+  <ApplicationDisplayVersion>1.2</ApplicationDisplayVersion>
+  <ApplicationVersion>3</ApplicationVersion>
   <SupportedOSPlatformVersion>23.0</SupportedOSPlatformVersion>
  </PropertyGroup>
  <ItemGroup>
   <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0" />
   <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="10.0.0" />
-  <MauiIcon Include="Resources/AppIcon/appicon.svg" />
+  <MauiIcon Include="Resources/AppIcon/appicon.svg" ForegroundFile="Resources/AppIcon/appiconfg.svg" ForegroundScale="0.65" />
   <MauiSplashScreen Include="Resources/Splash/splash.svg" Color="#102742" BaseSize="128,128"/>
   <MauiImage Include="Resources/Images/*" />
  </ItemGroup>
