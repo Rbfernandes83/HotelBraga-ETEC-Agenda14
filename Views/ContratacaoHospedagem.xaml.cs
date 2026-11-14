@@ -25,12 +25,12 @@ public partial class ContratacaoHospedagem : ContentPage
 
     private void AtualizarSaida()
     {
-        DateTime minima = Entrada.Date.AddDays(1);
-        DateTime maxima = Entrada.Date.AddMonths(6);
+        DateTime entrada = Entrada.Date?.Date ?? DateTime.Today;
+        DateTime minima = entrada.AddDays(1);
+        DateTime maxima = entrada.AddMonths(6);
 
-        // Primeiro amplia o limite máximo, depois ajusta a data e o mínimo.
         Saida.MaximumDate = maxima;
-        if (Saida.Date < minima || Saida.Date > maxima)
+        if (Saida.Date is null || Saida.Date < minima || Saida.Date > maxima)
             Saida.Date = minima;
         Saida.MinimumDate = minima;
     }
@@ -63,45 +63,50 @@ public partial class ContratacaoHospedagem : ContentPage
 
         PrecoTexto.Text = $"Adulto: {quarto.ValorDiariaAdulto.ToString("C", cultura)}  •  Criança: {quarto.ValorDiariaCrianca.ToString("C", cultura)} / diária";
 
-        int diarias = (Saida.Date.Date - Entrada.Date.Date).Days;
-        if (diarias < 1)
+        DateTime? entrada = Entrada.Date?.Date;
+        DateTime? saida = Saida.Date?.Date;
+        if (entrada is null || saida is null || saida <= entrada)
         {
             EstimativaTexto.Text = "Confira as datas";
             BeneficioTexto.Text = string.Empty;
             return;
         }
 
-        var reserva = CriarReserva(quarto);
+        var reserva = CriarReserva(quarto, entrada.Value, saida.Value);
         EstimativaTexto.Text = reserva.Total.ToString("C", cultura);
         BeneficioTexto.Text = reserva.Desconto > 0
             ? $"Desconto especial: {reserva.Desconto.ToString("C", cultura)}"
             : $"{reserva.Diarias} diária(s) para {reserva.Adultos + reserva.Criancas} hóspede(s)";
     }
 
-    private Reserva CriarReserva(Quarto quarto) => new()
+    private Reserva CriarReserva(Quarto quarto, DateTime entrada, DateTime saida) => new()
     {
         Quarto = quarto,
         Adultos = (int)Adultos.Value,
         Criancas = (int)Criancas.Value,
-        Entrada = Entrada.Date.Date,
-        Saida = Saida.Date.Date
+        Entrada = entrada,
+        Saida = saida
     };
 
     private async void Confirmar(object sender, EventArgs e)
     {
         if (Quartos.SelectedItem is not Quarto quarto)
         {
-            await DisplayAlert("Atenção", "Escolha uma acomodação.", "OK");
+            await DisplayAlertAsync("Atenção", "Escolha uma acomodação.", "OK");
             return;
         }
 
-        if (Entrada.Date.Date < DateTime.Today || Saida.Date.Date <= Entrada.Date.Date)
+        DateTime? entrada = Entrada.Date?.Date;
+        DateTime? saida = Saida.Date?.Date;
+
+        if (entrada is null || saida is null ||
+            entrada < DateTime.Today || saida <= entrada)
         {
-            await DisplayAlert("Atenção", "Confira as datas de check-in e check-out.", "OK");
+            await DisplayAlertAsync("Atenção", "Confira as datas de check-in e check-out.", "OK");
             return;
         }
 
-        await Navigation.PushAsync(new HospedagemContratada(CriarReserva(quarto)));
+        await Navigation.PushAsync(new HospedagemContratada(CriarReserva(quarto, entrada.Value, saida.Value)));
     }
 
     private async void AbrirSobre(object sender, EventArgs e)
