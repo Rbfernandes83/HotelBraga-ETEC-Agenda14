@@ -3,11 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HotelBraga.Views.SobrePage"
              Title="Sobre" BackgroundColor="#F5F7FA">
-    <VerticalStackLayout Padding="24" Spacing="15">
-        <Label Text="Hotel Braga" FontSize="30" FontAttributes="Bold" TextColor="#142D4E" />
-        <Label Text="Desenvolvido por Rogério Braga Fernandes" />
-        <Label Text="ETEC — Desenvolvimento de Sistemas II" />
-        <Label Text="Agenda 14 · 2026" />
-        <Label Text="Projeto de estudo em .NET MAUI, C# e XAML, baseado no AppHotel apresentado no material da ETEC." />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+            <Label Text="H O T E L  B R A G A" TextColor="#B28B47" FontSize="12" FontAttributes="Bold" />
+            <Label Text="Sobre o projeto" FontSize="29" FontAttributes="Bold" />
+            <Border BackgroundColor="White" Stroke="#E4EAF1" StrokeThickness="1" Padding="20">
+                <Border.StrokeShape><RoundRectangle CornerRadius="18" /></Border.StrokeShape>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Desenvolvimento de Sistemas II — ETEC" FontSize="17" FontAttributes="Bold" />
+                    <Label Text="Agenda 14 • 2026" />
+                    <Label Text="Desenvolvido por Rogério Braga Fernandes." />
+                    <Label Text="Aplicativo acadêmico em C# e .NET MAUI. Utiliza classes, encapsulamento, herança, polimorfismo e validação de datas para simular reservas de hospedagem." />
+                    <Label Text="Baseado no projeto AppHotel disponibilizado no material da ETEC." FontSize="12" TextColor="#617187" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

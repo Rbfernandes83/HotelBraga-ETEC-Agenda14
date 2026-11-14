@@ -2,34 +2,76 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HotelBraga.Views.ContratacaoHospedagem"
-             Title="Nova reserva"
-             BackgroundColor="#F5F7FA">
+             Title="Nova reserva" BackgroundColor="#F5F7FA">
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16">
-            <Label Text="HOTEL BRAGA" FontSize="32" FontAttributes="Bold" TextColor="#142D4E" />
-            <Label Text="Escolha sua hospedagem" FontSize="18" TextColor="#65758A" />
-            <Label Text="Suítes de luxo: 5% de desconto a partir de 3 diárias"
-                   FontSize="12" TextColor="#65758A" />
-            <Label Text="Acomodação" FontAttributes="Bold" />
-            <Picker x:Name="Quartos" Title="Selecione a suíte" ItemDisplayBinding="{Binding Descricao}" />
-            <Label Text="Adultos" FontAttributes="Bold" />
-            <HorizontalStackLayout Spacing="18">
-                <Stepper x:Name="Adultos" Minimum="1" Maximum="10" Value="1" />
-                <Label Text="{Binding Value, Source={x:Reference Adultos}}" VerticalOptions="Center" />
-            </HorizontalStackLayout>
-            <Label Text="Crianças" FontAttributes="Bold" />
-            <HorizontalStackLayout Spacing="18">
-                <Stepper x:Name="Criancas" Minimum="0" Maximum="10" />
-                <Label Text="{Binding Value, Source={x:Reference Criancas}}" VerticalOptions="Center" />
-            </HorizontalStackLayout>
-            <Label Text="Check-in" FontAttributes="Bold" />
-            <DatePicker x:Name="Entrada" Format="dd/MM/yyyy" DateSelected="EntradaAlterada" />
-            <Label Text="Check-out" FontAttributes="Bold" />
-            <DatePicker x:Name="Saida" Format="dd/MM/yyyy" />
-            <Button Text="Calcular hospedagem" BackgroundColor="#142D4E"
-                    TextColor="White" Clicked="Confirmar" />
-            <Button Text="Sobre o aplicativo" TextColor="#142D4E"
-                    BackgroundColor="#E7EDF4" Clicked="AbrirSobre" />
+        <VerticalStackLayout Spacing="0">
+            <Border StrokeThickness="0" BackgroundColor="#0B1D34" Padding="24,30,24,28">
+                <Border.StrokeShape><RoundRectangle CornerRadius="0,0,28,28" /></Border.StrokeShape>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="H O T E L  B R A G A" FontSize="12" TextColor="#C6A15B" FontAttributes="Bold" />
+                    <Label Text="Sua próxima estadia começa aqui." FontSize="29" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Conforto, praticidade e uma reserva do seu jeito." FontSize="14" TextColor="#D1DBE7" />
+                    <Border BackgroundColor="#233C59" StrokeThickness="0" Padding="12,9" Margin="0,8,0,0">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="12" /></Border.StrokeShape>
+                        <Label Text="RESERVA ONLINE  •  VALORES EM REAIS" FontSize="11" TextColor="#E4C993" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+            <VerticalStackLayout Padding="20,22,20,32" Spacing="16">
+                <Label Text="Planeje sua hospedagem" FontSize="21" FontAttributes="Bold" />
+                <Border BackgroundColor="White" Stroke="#E4EAF1" StrokeThickness="1" Padding="18">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="18" /></Border.StrokeShape>
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="01  ACOMODAÇÃO" FontSize="12" FontAttributes="Bold" TextColor="#B28B47" />
+                        <Label Text="Escolha sua suíte" FontSize="17" FontAttributes="Bold" />
+                        <Picker x:Name="Quartos" Title="Selecione a acomodação" ItemDisplayBinding="{Binding Descricao}" SelectedIndexChanged="AtualizarPrevia" />
+                        <Label x:Name="PrecoTexto" Text="Selecione uma suíte para consultar os valores." FontSize="13" TextColor="#617187" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border BackgroundColor="White" Stroke="#E4EAF1" StrokeThickness="1" Padding="18">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="18" /></Border.StrokeShape>
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="02  HÓSPEDES" FontSize="12" FontAttributes="Bold" TextColor="#B28B47" />
+                        <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="18">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Adultos" FontSize="16" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Value, Source={x:Reference Adultos}, StringFormat='{0:F0}'}" VerticalOptions="Center" />
+                            <Stepper Grid.Row="0" Grid.Column="2" x:Name="Adultos" Minimum="1" Maximum="10" Value="1" Increment="1" ValueChanged="AtualizarPrevia" />
+                            <Label Grid.Row="1" Grid.Column="0" Text="Crianças" FontSize="16" />
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Value, Source={x:Reference Criancas}, StringFormat='{0:F0}'}" VerticalOptions="Center" />
+                            <Stepper Grid.Row="1" Grid.Column="2" x:Name="Criancas" Minimum="0" Maximum="10" Increment="1" ValueChanged="AtualizarPrevia" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+                <Border BackgroundColor="White" Stroke="#E4EAF1" StrokeThickness="1" Padding="18">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="18" /></Border.StrokeShape>
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="03  PERÍODO" FontSize="12" FontAttributes="Bold" TextColor="#B28B47" />
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                            <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                <Label Text="Check-in" FontSize="13" TextColor="#617187" />
+                                <DatePicker x:Name="Entrada" Format="dd/MM/yyyy" DateSelected="EntradaAlterada" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                <Label Text="Check-out" FontSize="13" TextColor="#617187" />
+                                <DatePicker x:Name="Saida" Format="dd/MM/yyyy" DateSelected="SaidaAlterada" />
+                            </VerticalStackLayout>
+                        </Grid>
+                        <Label Text="O check-out deve ser posterior ao check-in." FontSize="12" TextColor="#617187" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border BackgroundColor="#EAF0F6" StrokeThickness="0" Padding="18">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="16" /></Border.StrokeShape>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="ESTIMATIVA DA RESERVA" FontSize="11" FontAttributes="Bold" TextColor="#617187" />
+                        <Label x:Name="EstimativaTexto" Text="Selecione uma suíte" FontSize="25" FontAttributes="Bold" />
+                        <Label x:Name="BeneficioTexto" FontSize="12" TextColor="#47745D" />
+                    </VerticalStackLayout>
+                </Border>
+                <Button Text="Ver resumo da reserva" Clicked="Confirmar" HeightRequest="54"
+                        CornerRadius="14" FontAttributes="Bold" BackgroundColor="#142D4E" TextColor="White" />
+                <Button Text="Sobre o aplicativo" Clicked="AbrirSobre" BackgroundColor="Transparent"
+                        TextColor="#142D4E" FontSize="13" />
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
