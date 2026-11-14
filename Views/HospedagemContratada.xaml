@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HotelBraga.Views.HospedagemContratada"
+             Title="Resumo da reserva"
+             BackgroundColor="#F5F7FA">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+            <Label Text="Resumo da hospedagem" FontSize="27"
+                   FontAttributes="Bold" TextColor="#142D4E" />
+            <Label x:Name="QuartoTexto" FontSize="20" FontAttributes="Bold" />
+            <Label x:Name="HospedesTexto" />
+            <Label x:Name="DatasTexto" />
+            <Label x:Name="DiariasTexto" />
+            <Label x:Name="TotalTexto" FontSize="25"
+                   FontAttributes="Bold" TextColor="#142D4E" />
+            <Button Text="Voltar" Clicked="Voltar"
+                    BackgroundColor="#142D4E" TextColor="White" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
