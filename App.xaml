@@ -10,7 +10,6 @@
             <Color x:Key="Fundo">#F5F7FA</Color>
             <Color x:Key="TextoSecundario">#617187</Color>
             <Style TargetType="Label">
-                <Setter Property="FontFamily" Value="OpenSansRegular" />
                 <Setter Property="TextColor" Value="#142D4E" />
             </Style>
             <Style TargetType="Picker">
