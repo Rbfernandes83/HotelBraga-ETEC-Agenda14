@@ -8,28 +8,24 @@
         <VerticalStackLayout Padding="24" Spacing="16">
             <Label Text="HOTEL BRAGA" FontSize="32" FontAttributes="Bold" TextColor="#142D4E" />
             <Label Text="Escolha sua hospedagem" FontSize="18" TextColor="#65758A" />
-
+            <Label Text="Suítes de luxo: 5% de desconto a partir de 3 diárias"
+                   FontSize="12" TextColor="#65758A" />
             <Label Text="Acomodação" FontAttributes="Bold" />
             <Picker x:Name="Quartos" Title="Selecione a suíte" ItemDisplayBinding="{Binding Descricao}" />
-
             <Label Text="Adultos" FontAttributes="Bold" />
             <HorizontalStackLayout Spacing="18">
                 <Stepper x:Name="Adultos" Minimum="1" Maximum="10" Value="1" />
                 <Label Text="{Binding Value, Source={x:Reference Adultos}}" VerticalOptions="Center" />
             </HorizontalStackLayout>
-
             <Label Text="Crianças" FontAttributes="Bold" />
             <HorizontalStackLayout Spacing="18">
                 <Stepper x:Name="Criancas" Minimum="0" Maximum="10" />
                 <Label Text="{Binding Value, Source={x:Reference Criancas}}" VerticalOptions="Center" />
             </HorizontalStackLayout>
-
             <Label Text="Check-in" FontAttributes="Bold" />
             <DatePicker x:Name="Entrada" Format="dd/MM/yyyy" DateSelected="EntradaAlterada" />
-
             <Label Text="Check-out" FontAttributes="Bold" />
             <DatePicker x:Name="Saida" Format="dd/MM/yyyy" />
-
             <Button Text="Calcular hospedagem" BackgroundColor="#142D4E"
                     TextColor="White" Clicked="Confirmar" />
             <Button Text="Sobre o aplicativo" TextColor="#142D4E"

@@ -10,6 +10,11 @@ public class Reserva
 
     public int Diarias => (Saida.Date - Entrada.Date).Days;
 
-    public decimal Total => Diarias *
-        (Adultos * Quarto.ValorDiariaAdulto + Criancas * Quarto.ValorDiariaCrianca);
+    // A classe Quarto decide o cálculo: se for SuiteLuxo, aplica a regra própria.
+    public decimal Total => Quarto.CalcularTotal(Adultos, Criancas, Diarias);
+
+    public decimal TotalSemDesconto =>
+        (Adultos * Quarto.ValorDiariaAdulto + Criancas * Quarto.ValorDiariaCrianca) * Diarias;
+
+    public decimal Desconto => TotalSemDesconto - Total;
 }

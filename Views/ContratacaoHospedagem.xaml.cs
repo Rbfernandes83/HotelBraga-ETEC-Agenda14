@@ -13,17 +13,21 @@ public partial class ContratacaoHospedagem : ContentPage
         Entrada.MinimumDate = DateTime.Today;
         Entrada.MaximumDate = DateTime.Today.AddMonths(6);
         Entrada.Date = DateTime.Today;
-
         AtualizarSaida();
     }
 
     private void AtualizarSaida()
     {
-        Saida.MinimumDate = Entrada.Date.AddDays(1);
-        Saida.MaximumDate = Entrada.Date.AddMonths(6);
+        DateTime minima = Entrada.Date.AddDays(1);
+        DateTime maxima = Entrada.Date.AddMonths(6);
 
-        if (Saida.Date < Saida.MinimumDate || Saida.Date > Saida.MaximumDate)
-            Saida.Date = Saida.MinimumDate;
+        // Ajusta a data atual antes de alterar os limites do controle.
+        if (Saida.Date < minima || Saida.Date > maxima)
+            Saida.Date = minima;
+
+        // Ajustar o máximo primeiro evita um intervalo temporário inválido.
+        Saida.MaximumDate = maxima;
+        Saida.MinimumDate = minima;
     }
 
     private void EntradaAlterada(object sender, DateChangedEventArgs e)
@@ -39,9 +43,9 @@ public partial class ContratacaoHospedagem : ContentPage
             return;
         }
 
-        if (Saida.Date <= Entrada.Date)
+        if (Entrada.Date.Date < DateTime.Today || Saida.Date <= Entrada.Date)
         {
-            await DisplayAlert("Atenção", "O check-out deve ser depois do check-in.", "OK");
+            await DisplayAlert("Atenção", "Confira as datas de check-in e check-out.", "OK");
             return;
         }
 

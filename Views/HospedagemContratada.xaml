@@ -12,6 +12,7 @@
             <Label x:Name="HospedesTexto" />
             <Label x:Name="DatasTexto" />
             <Label x:Name="DiariasTexto" />
+            <Label x:Name="DescontoTexto" TextColor="#2B7551" />
             <Label x:Name="TotalTexto" FontSize="25"
                    FontAttributes="Bold" TextColor="#142D4E" />
             <Button Text="Voltar" Clicked="Voltar"

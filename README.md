@@ -1,23 +1,28 @@
 # Hotel Braga — Agenda 14
 
-Atividade de Desenvolvimento de Sistemas II (ETEC). Aplicativo de hospedagem desenvolvido com .NET MAUI, C# e XAML.
+Projeto de Desenvolvimento de Sistemas II da ETEC, feito em C# e .NET MAUI.
 
-## Funcionalidades
-- Seleção de suíte e número de adultos e crianças
-- Check-in e check-out com validação das datas
-- Cálculo de diárias e valor total da reserva
-- Resumo da hospedagem e tela Sobre
+## O que o aplicativo faz
+- Escolhe a suíte e a quantidade de adultos e crianças
+- Valida check-in e check-out
+- Calcula o valor da hospedagem conforme o número de diárias
+- Mostra um resumo com os dados da reserva
 
-## Estrutura
-- `Models`: classes Quarto e Reserva
-- `Services`: lista das acomodações
-- `Views`: telas XAML
-- `.github/workflows`: compilação Android no GitHub Actions
+## Conceitos da Agenda 14
+- **Encapsulamento:** propriedades de valor da diária validam preços negativos em `Models/Quarto.cs`
+- **Herança:** `SuiteLuxo : Quarto` em `Models/SuiteLuxo.cs`
+- **Polimorfismo:** `SuiteLuxo` redefine `CalcularTotal` e aplica 5% de desconto em reservas de 3 ou mais diárias
+- **Orientação a objetos:** `Reserva` concentra os dados e usa o método do tipo de quarto selecionado
+- **Validação da interface:** `Picker`, `Stepper` e `DatePicker`
+
+## Organização
+- `Models`: Quarto, SuiteLuxo e Reserva
+- `Services`: QuartoService
+- `Views`: telas em XAML e C#
+- `.github/workflows`: compilação Android pelo GitHub Actions
 
 ## Referência
-Projeto AppHotel da Agenda 14: https://github.com/tiagotas/MauiAppHotel/tree/4e655cb68610572865b83fc420655601b1a5f1ff
+Atividade baseada no AppHotel do material da ETEC:
+https://github.com/tiagotas/MauiAppHotel/tree/4e655cb68610572865b83fc420655601b1a5f1ff
 
-## Compilação
-Abra a aba **Actions** no GitHub, escolha **Compilar Hotel Braga Agenda 14** e acompanhe a compilação. Após sucesso, baixe o artefato com o APK.
-
-Projeto para fins educacionais. A compilação e os testes no celular devem ser conferidos antes da entrega.
+Projeto educacional. Compilação e testes no celular devem ser conferidos antes da entrega.
