@@ -8,7 +8,7 @@
             <Border StrokeThickness="0" BackgroundColor="#0B1D34" Padding="24,30,24,28">
                 <Border.StrokeShape><RoundRectangle CornerRadius="0,0,28,28" /></Border.StrokeShape>
                 <VerticalStackLayout Spacing="10">
-                    <Image Source="https://raw.githubusercontent.com/Rbfernandes83/HotelBraga-ETEC-Agenda13/main/Resources/Images/hotel.jpg" HeightRequest="145" Aspect="AspectFill"/>
+                    <Image Source="hotel_fachada.jpg" HeightRequest="145" Aspect="AspectFill"/>
                     <Label Text="H O T E L  B R A G A" FontSize="12" TextColor="#C6A15B" FontAttributes="Bold" />
                     <Label Text="Sua próxima estadia começa aqui." FontSize="29" FontAttributes="Bold" TextColor="White" />
                     <Label Text="Conforto, praticidade e uma reserva do seu jeito." FontSize="14" TextColor="#D1DBE7" />
