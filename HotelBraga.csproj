@@ -9,8 +9,8 @@
   <Nullable>enable</Nullable>
   <ApplicationTitle>Hotel Braga</ApplicationTitle>
   <ApplicationId>com.rbfernandes83.hotelbraga.agenda14</ApplicationId>
-  <ApplicationDisplayVersion>1.4</ApplicationDisplayVersion>
-  <ApplicationVersion>5</ApplicationVersion>
+  <ApplicationDisplayVersion>1.5</ApplicationDisplayVersion>
+  <ApplicationVersion>6</ApplicationVersion>
   <SupportedOSPlatformVersion>23.0</SupportedOSPlatformVersion>
  </PropertyGroup>
  <ItemGroup>
