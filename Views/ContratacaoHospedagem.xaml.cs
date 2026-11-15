@@ -13,6 +13,7 @@ public partial class ContratacaoHospedagem : ContentPage
     {
         InitializeComponent();
         Quartos.ItemsSource = QuartoService.Listar();
+        Quartos.SelectedIndex = 0;
 
         Entrada.MinimumDate = DateTime.Today;
         Entrada.MaximumDate = DateTime.Today.AddMonths(6);
@@ -29,10 +30,13 @@ public partial class ContratacaoHospedagem : ContentPage
         DateTime minima = entrada.AddDays(1);
         DateTime maxima = entrada.AddMonths(6);
 
+        // Ajustar os limites em ordem segura evita exceções quando o usuário
+        // altera o check-in para uma data posterior ao check-out atual.
+        Saida.MinimumDate = DateTime.MinValue;
         Saida.MaximumDate = maxima;
+        Saida.MinimumDate = minima;
         if (Saida.Date is null || Saida.Date < minima || Saida.Date > maxima)
             Saida.Date = minima;
-        Saida.MinimumDate = minima;
     }
 
     private void EntradaAlterada(object sender, DateChangedEventArgs e)
